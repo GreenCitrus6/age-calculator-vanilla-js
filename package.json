@@ -1,0 +1,19 @@
+{
+  "name": "vanilla-age-calculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreenCitrus6/age-calculator-vanilla-js.git"
+  },
+  "author": "Daniel Aadland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GreenCitrus6/age-calculator-vanilla-js/issues"
+  },
+  "homepage": "https://github.com/GreenCitrus6/age-calculator-vanilla-js#readme"
+}
