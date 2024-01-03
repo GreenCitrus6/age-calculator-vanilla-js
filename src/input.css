@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-size: 32px;
+}
+
+@layer base {
+    @font-face {
+        font-family: Poppins;
+        font-weight: 400;
+        src: url(/assets/fonts/Poppins-Regular.ttf) format("woff");
+    }
+    @font-face {
+        font-family: Poppins;
+        font-weight: 400;
+        font-style: italic;
+        src: url(/assets/fonts/Poppins-Italic.ttf) format("woff");
+    }
+    @font-face {
+        font-family: Poppins;
+        font-weight: 700;
+        src: url(/assets/fonts/Poppins-Bold.ttf) format("woff");
+    }
+    @font-face {
+        font-family: Poppins;
+        font-weight: 700;
+        font-style: italic;
+        src: url(/assets/fonts/Poppins-BoldItalic.ttf) format("woff");
+    }
+    @font-face {
+        font-family: Poppins;
+        font-weight:800;
+        src: url(/assets/fonts/Poppins-ExtraBold.ttf) format("woff");
+    }
+    @font-face {
+        font-family: Poppins;
+        font-weight: 800;
+        font-style: italic;
+        src: url(/assets/fonts/Poppins-ExtraBoldItalic.ttf) format("woff");
+    }
+}

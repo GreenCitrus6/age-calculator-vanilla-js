@@ -6,7 +6,43 @@
     <title>Age Calculator</title>
     <link rel="stylesheet" href="./dist/styles.css">
 </head>
-<body>
-    
+<body class="bg-neutral-offWhite
+w-full h-screen p-2">
+    <main class="bg-neutral-white
+    p-2
+    flex flex-col
+    rounded-xl rounded-br-[2.75rem]">
+        <section id="input-container">
+            <input />
+            <input />
+            <input />
+        </section>    
+        
+        <section id="divider-button" class="flex flex-col items-center">
+            <hr />
+            <button class="bg-primary-purple rounded-full
+            p-2">
+                <img src="./assets/images/icon-arrow.svg" alt="Calculate your age" class="size-4" />
+            </button>
+        </section>
+        
+        <section id="results-container">
+            <h1 class="font-poppins text-2xl font-extrabold italic">
+                <span class="text-primary-purple">--</span>
+                years
+            </h1>
+            <h2 class="font-poppins
+            text-2xl
+            font-extrabold
+            italic">
+                <span class="text-primary-purple">--</span>
+                months
+            </h2>
+            <h2 class="font-poppins text-2xl font-extrabold italic">
+                <span class="text-primary-purple">--</span>
+                days
+            </h2>
+        </section>
+    </main>
 </body>
 </html>
