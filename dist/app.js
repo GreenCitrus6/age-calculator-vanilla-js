@@ -11,7 +11,14 @@ function validate(e) {
     const dayInput = document.querySelector("#day-input");
     const monthInput = document.querySelector("#month-input");
     const yearInput = document.querySelector("#year-input");
+    const dayError = document.querySelector("#day-val-error");
+    const monthError = document.querySelector("#month-val-error");
+    const yearError = document.querySelector("#year-val-error");
+
     let valid = true;
+
+    
+    console.log(monthInput.value, dayInput.value, yearInput.value)
 
     function checkMonthLength(month) {
         switch(month) {
@@ -54,21 +61,50 @@ function validate(e) {
     }
     checkMonthLength(monthInput.value);
 
-    if (monthInput.value > 12 && monthInput.value < 1 && (typeof(monthInput.value) !== "number")) {
-        const monthError = document.querySelector("#month-error");
-        monthError.classList.remove("hidden");
-        monthInput.classList.add("invalid");
-        monthError.setAttribute("aria-hidden", false);
-        monthError.setAttribute("aria-invalid", true);
-        return valid = false; 
+    function showInvalidInput(field, error) {
+        error.classList.remove("hidden");
+        field.classList.add("invalid");
+        error.setAttribute("aria-hidden", false);
+        error.setAttribute("aria-invalid", true);
     }
 
-    if (dayInput.value > monthLength) {
+    // Month validation checks
+    // Is there a month input
+    if (!monthInput.value) {
+        monthError.innerHTML = "This field is required";
+        showInvalidInput(monthInput, monthError);
         
-        // use switch statement to change monthLength based on current month
+        valid = false;
+    } // Is the input a valid month
+    else if (monthInput.value > 12 || monthInput.value < 1 || (typeof(monthInput.value !== "number"))) {
+        monthError.innerHTML = "Must be a valid month";
+        showInvalidInput(monthInput, monthError);
+
+        valid = false;
     }
 
-    if (yearInput.value) {
-        // take year from current date constructor
+    // Day validation checks
+    if (!dayInput.value) {
+        dayError.innerHTML = "This field is required";
+        showInvalidInput(dayInput, dayError);
+
+        valid = false;
+    } // Is the day feasible
+    else if (dayInput.value > 31 || dayInput.value < 1 || (typeof(dayInput.value !== "number"))) {
+        dayError.innerHTML = "Must be a valid day";
+        showInvalidInput(dayInput, dayError);
+
+        valid = false; 
     }
+
+    // Year validation checks
+    if (!yearInput.value) {
+        yearError.innerHTML = "This field is required";
+        showInvalidInput(yearInput, yearError);
+
+        valid = false; 
+    }
+
+
+    valid = true;
 }
