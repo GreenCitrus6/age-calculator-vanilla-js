@@ -15,7 +15,10 @@ function validate(e) {
     const monthError = document.querySelector("#month-val-error");
     const yearError = document.querySelector("#year-val-error");
 
-    let valid = true;
+    let valid
+    let dayValid;
+    let monthValid;
+    let yearValid;
 
     
     console.log(monthInput.value, dayInput.value, yearInput.value)
@@ -67,6 +70,12 @@ function validate(e) {
         error.setAttribute("aria-hidden", false);
         error.setAttribute("aria-invalid", true);
     }
+    function showValidInput(field, error) {
+        error.classList.add("hidden");
+        field.classList.remove("invalid");
+        error.setAttribute("aria-hidden", true);
+        error.setAttribute("aria-invalid", false);
+    }
 
     // Month validation checks
     // Is there a month input
@@ -74,13 +83,17 @@ function validate(e) {
         monthError.innerHTML = "This field is required";
         showInvalidInput(monthInput, monthError);
         
-        valid = false;
+        monthValid = false;
     } // Is the input a valid month
-    else if (monthInput.value > 12 || monthInput.value < 1 || (typeof(monthInput.value !== "number"))) {
+    else if (monthInput.value > 12 || monthInput.value < 1 || (Number(monthInput.value) === NaN)) {
         monthError.innerHTML = "Must be a valid month";
         showInvalidInput(monthInput, monthError);
 
-        valid = false;
+        monthValid = false;
+    } else {
+        showValidInput(monthInput, monthError);
+
+        monthValid = true;
     }
 
     // Day validation checks
@@ -90,11 +103,15 @@ function validate(e) {
 
         valid = false;
     } // Is the day feasible
-    else if (dayInput.value > 31 || dayInput.value < 1 || (typeof(dayInput.value !== "number"))) {
+    else if (dayInput.value > 31 || dayInput.value < 1 || (Number(dayInput.value) === NaN)) {
         dayError.innerHTML = "Must be a valid day";
         showInvalidInput(dayInput, dayError);
 
         valid = false; 
+    } else {
+        showValidInput(dayInput, dayError);
+
+        dayValid = true;
     }
 
     // Year validation checks
@@ -103,6 +120,15 @@ function validate(e) {
         showInvalidInput(yearInput, yearError);
 
         valid = false; 
+    } else if(Number(yearInput.value) === NaN) {
+        yearError.innerHTML = "Must be a valid year";
+        showInvalidInput(yearInput, yearError);
+
+        valid = false; 
+    } else {
+        showValidInput(yearInput, yearError);
+
+        yearValid = true;
     }
 
 
