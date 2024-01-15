@@ -3,6 +3,7 @@ const submit = document.querySelector("#submit-button");
 submit.addEventListener("click", validate)
 
 let currentDate = Date.now();
+console.log(currentDate);
 // Construct a date object from the user input, then find the difference between that and the current date found upon page initialization
 
 function validate(e) {
@@ -101,13 +102,13 @@ function validate(e) {
         dayError.innerHTML = "This field is required";
         showInvalidInput(dayInput, dayError);
 
-        valid = false;
+        dayValid = false;
     } // Is the day feasible
     else if (dayInput.value > 31 || dayInput.value < 1 || (Number(dayInput.value) === NaN)) {
         dayError.innerHTML = "Must be a valid day";
         showInvalidInput(dayInput, dayError);
 
-        valid = false; 
+        dayValid = false; 
     } else {
         showValidInput(dayInput, dayError);
 
@@ -119,18 +120,62 @@ function validate(e) {
         yearError.innerHTML = "This field is required";
         showInvalidInput(yearInput, yearError);
 
-        valid = false; 
+        yearValid = false; 
     } else if(Number(yearInput.value) === NaN) {
         yearError.innerHTML = "Must be a valid year";
         showInvalidInput(yearInput, yearError);
 
-        valid = false; 
+        yearValid = false; 
     } else {
         showValidInput(yearInput, yearError);
 
         yearValid = true;
     }
 
+    let userDate = "";
 
-    valid = true;
+    function timestampToYMD(timestampDiff) {
+        // calculated age is not accurate, try converting from ms to days first, then to months and years?
+
+        let numOfYears = timestampDiff / 31_556_952_000;
+        let diffMinusYears = timestampDiff % 31_556_952_000;
+        let numOfMonths = diffMinusYears / 2_629_746_000;
+        let diffMinusMonths = numOfMonths % 2_629_746_000;
+        let numOfDays = diffMinusMonths / 87_658_200;
+        
+        document.querySelector("#num-of-years").innerHTML = Math.floor(numOfYears);
+        document.querySelector("#num-of-months").innerHTML = Math.floor(numOfMonths);
+        document.querySelector("#num-of-days").innerHTML = (numOfDays);
+    }
+
+    if (dayValid === true & monthValid === true && yearValid === true) {
+        valid = true
+        userDateInput  = `${yearInput.value}-${monthInput.value}-${dayInput.value}`;
+
+        let calcAgeTimestamp = currentDate - Date.parse(userDateInput);
+ 
+        if (calcAgeTimestamp < 0) {
+            // Throw error for future date
+            dayError.classList.remove("hidden");
+            dayInput.classList.add("invalid");
+            monthInput.classList.add("invalid");
+            yearInput.classList.add("invalid");
+            dayError.setAttribute("aria-hidden", false);
+            dayError.setAttribute("aria-invalid", true);
+            dayError.innerHTML = "Must be in the past"
+
+            // Show hyphens for calculated age
+            document.querySelector("#num-of-years").innerHTML = "--";
+            document.querySelector("#num-of-months").innerHTML = "--";
+            document.querySelector("#num-of-days").innerHTML = "--";
+        } else {
+            // Remove any shown errors
+            showValidInput(dayInput, dayError);
+            showValidInput(monthInput, monthError);
+            showValidInput(yearInput, yearError);
+            
+            // Calc user age and set it to DOM
+            timestampToYMD(calcAgeTimestamp);
+        }        
+    }
 }
