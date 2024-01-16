@@ -132,27 +132,25 @@ function validate(e) {
         yearValid = true;
     }
 
-    let userDate = "";
-
     function timestampToYMD(timestampDiff) {
         // calculated age is not accurate, try converting from ms to days first, then to months and years?
-
-        let numOfYears = timestampDiff / 31_556_952_000;
-        let diffMinusYears = timestampDiff % 31_556_952_000;
-        let numOfMonths = diffMinusYears / 2_629_746_000;
-        let diffMinusMonths = numOfMonths % 2_629_746_000;
-        let numOfDays = diffMinusMonths / 87_658_200;
+        let numOfYears = timestampDiff / 31_536_000_000;
+        let numOfMonths = ((timestampDiff % 31_536_000_000) / 2_592_000_000);
+        let numOfDays = ((timestampDiff % 31_536_000_000) % 2_592_000_000);
         
         document.querySelector("#num-of-years").innerHTML = Math.floor(numOfYears);
         document.querySelector("#num-of-months").innerHTML = Math.floor(numOfMonths);
-        document.querySelector("#num-of-days").innerHTML = (numOfDays);
+        document.querySelector("#num-of-days").innerHTML = Math.floor(numOfDays);
     }
 
     if (dayValid === true & monthValid === true && yearValid === true) {
         valid = true
-        userDateInput  = `${yearInput.value}-${monthInput.value}-${dayInput.value}`;
+        userDateInput  = `${yearInput.value}/${monthInput.value}/${dayInput.value}`;
+
+        let userDate = new Date();
 
         let calcAgeTimestamp = currentDate - Date.parse(userDateInput);
+        console.log(calcAgeTimestamp);
  
         if (calcAgeTimestamp < 0) {
             // Throw error for future date
