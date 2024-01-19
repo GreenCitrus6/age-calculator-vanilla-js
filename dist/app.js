@@ -103,8 +103,10 @@ function validate(e) {
         const NumOfLeapYears = (1000/4) - 7;
         const ExactMonthLength = 
         // Average length of a month, accounting for leap years using the number of leap years between 1000 and 2000
-        (
-            ((1000 - ((1000/4) - 7)) * ((31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) + (((1000/4) - 7) * (31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) ) / 1000);
+        (((1000 - ((1000/4) - 7)) * ((31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) //average month length in a normal year
+        + 
+        (((1000/4) - 7) * (31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) ) //average month length in a leap year
+         / 1000 /* averaging out the normal year month length and leap year month length over the span of 1000 years */);
         console.log(ExactMonthLength)
         const MsInAYear = (
             // taking years of 1001 to 2000
@@ -119,7 +121,6 @@ function validate(e) {
         let numOfMonths = ((timestampDiff % MsInAYear) / (MsInADay * ExactMonthLength));
         let numOfDays = ((timestampDiff % MsInAYear) % (ExactMonthLength * MsInADay) / MsInADay);
 
-        
         
         document.querySelector("#num-of-years").innerHTML = Math.floor(numOfYears);
         document.querySelector("#num-of-months").innerHTML = Math.floor(numOfMonths);
