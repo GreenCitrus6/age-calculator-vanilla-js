@@ -69,7 +69,8 @@ I am satisfied with how I managed to make the entire app become larger at a cert
             font-size: 40px;
         }
     }
-}```
+}
+```
 
 ### Continued development
 
