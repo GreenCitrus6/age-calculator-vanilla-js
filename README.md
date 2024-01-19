@@ -36,7 +36,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![image](https://github.com/GreenCitrus6/age-calculator-vanilla-js/assets/145170576/5b855fe4-6a9e-4d75-8cfd-e2e94fb657b4)
+
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
