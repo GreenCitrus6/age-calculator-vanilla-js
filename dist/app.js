@@ -112,7 +112,6 @@ function validate(e) {
         + 
         (((1000/4) - 7) * (31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) ) //average month length in a leap year
          / 1000 /* averaging out the normal year month length and leap year month length over the span of 1000 years */);
-        console.log(ExactMonthLength)
         const MsInAYear = (
             // taking years of 1001 to 2000
             /* LEAP YEAR RULES: 
@@ -138,7 +137,32 @@ function validate(e) {
 
         let calcAgeTimestamp = currentDate - Date.parse(userDateInput);
         console.log(calcAgeTimestamp);
- 
+        const checkMonthLength = () => {
+            switch(Number(monthInput.value)) {
+                case 1: 
+                case 3:
+                case 5:
+                case 7: 
+                case 8:
+                case 10:
+                case 12:
+                    if (Number(dayInput.value) <= 31) {return true };
+                    break;
+                case 2: 
+                    if (Number(dayInput.value) <= 29) {return true };
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    if (Number(dayInput.value) <= 30) {return true };
+                    break;
+            }
+            return false; 
+        }
+        console.log(checkMonthLength());
+        console.log(monthInput.value, dayInput.value)
+
         if (calcAgeTimestamp < 0) {
             // Throw error for future date
             dayError.classList.remove("hidden");
@@ -161,6 +185,10 @@ function validate(e) {
             document.querySelector("#num-of-years").innerHTML = "--";
             document.querySelector("#num-of-months").innerHTML = "--";
             document.querySelector("#num-of-days").innerHTML = "--";
+        } else if(!checkMonthLength()) {
+            console.log(checkMonthLength(monthInput.value, dayInput.value))
+            dayError.innerHTML = "Date is invalid";
+            showInvalidInput(dayInput, dayError, dayLabel);
         } else if (yearInput.value < 100) {
             yearError.innerHTML = "Date is too far in the past"
             showInvalidInput(yearInput, yearError, yearLabel);
