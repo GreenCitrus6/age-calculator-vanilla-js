@@ -33,6 +33,11 @@ function validate(e) {
         label.classList.add("text-primary-lightRed");
         error.setAttribute("aria-hidden", false);
         error.setAttribute("aria-invalid", true);
+        
+        // erase previously calculated age
+        document.querySelector("#num-of-years").innerHTML = "--";
+        document.querySelector("#num-of-months").innerHTML = "--";
+        document.querySelector("#num-of-days").innerHTML = "--";
     }
     function showValidInput(field, error, label) {
         error.classList.add("hidden");
