@@ -99,9 +99,11 @@ function validate(e) {
 
     function timestampToYMD(timestampDiff) {
         // calculated age is not accurate, try converting from ms to days first, then to months and years?
-        let numOfYears = timestampDiff / 31_536_000_000;
-        let numOfMonths = ((timestampDiff % 31_536_000_000) / 2_592_000_000);
-        let numOfDays = ((timestampDiff % 31_536_000_000) % 2_592_000_000 / 86_400_000)
+        let numOfYears = timestampDiff / 31_557_600_000;
+        let numOfMonths = ((timestampDiff % 31_557_600_000) / 2_592_000_000);
+        let numOfDays = ((timestampDiff % 31_557_600_000) % 2_592_000_000 / 86_400_000);
+
+        
         
         document.querySelector("#num-of-years").innerHTML = Math.floor(numOfYears);
         document.querySelector("#num-of-months").innerHTML = Math.floor(numOfMonths);
