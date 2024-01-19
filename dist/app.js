@@ -99,9 +99,25 @@ function validate(e) {
 
     function timestampToYMD(timestampDiff) {
         // calculated age is not accurate, try converting from ms to days first, then to months and years?
-        let numOfYears = timestampDiff / 31_557_600_000;
-        let numOfMonths = ((timestampDiff % 31_557_600_000) / 2_592_000_000);
-        let numOfDays = ((timestampDiff % 31_557_600_000) % 2_592_000_000 / 86_400_000);
+        const MsInADay = (1000 * 60 * 60 * 24)
+        const NumOfLeapYears = (1000/4) - 7;
+        const ExactMonthLength = 
+        // Average length of a month, accounting for leap years using the number of leap years between 1000 and 2000
+        (
+            ((1000 - ((1000/4) - 7)) * ((31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) + (((1000/4) - 7) * (31 + 29 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 + 31) / 12) ) / 1000);
+        console.log(ExactMonthLength)
+        const MsInAYear = (
+            // taking years of 1001 to 2000
+            /* LEAP YEAR RULES: 
+                Divisible by 4
+                For centuries, those divisible by 400
+            */
+            (365 + (NumOfLeapYears/ 999)) * MsInADay
+        );
+        // 31_557_016_216.21622
+        let numOfYears = timestampDiff / MsInAYear;
+        let numOfMonths = ((timestampDiff % MsInAYear) / (MsInADay * ExactMonthLength));
+        let numOfDays = ((timestampDiff % MsInAYear) % (ExactMonthLength * MsInADay) / MsInADay);
 
         
         
@@ -139,7 +155,11 @@ function validate(e) {
             document.querySelector("#num-of-years").innerHTML = "--";
             document.querySelector("#num-of-months").innerHTML = "--";
             document.querySelector("#num-of-days").innerHTML = "--";
-        } else {
+        } else if (yearInput.value < 100) {
+            yearError.innerHTML = "Date is too far in the past"
+            showInvalidInput(yearInput, yearError, yearLabel);
+        } 
+        else {
             // Remove any shown errors
             showValidInput(dayInput, dayError, dayLabel);
             showValidInput(monthInput, monthError, monthLabel);
