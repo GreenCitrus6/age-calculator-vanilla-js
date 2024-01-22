@@ -36,11 +36,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![image](https://github.com/GreenCitrus6/age-calculator-vanilla-js/assets/145170576/5b855fe4-6a9e-4d75-8cfd-e2e94fb657b4)
+
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [Deployed to GitHub Pages](https://greencitrus6.github.io/age-calculator-vanilla-js/)
 
 ## My process
 
@@ -60,7 +61,8 @@ Working with dates is very difficult, especially over long time periods because 
 
 I am satisfied with how I managed to make the entire app become larger at a certain breakpoint through adding a media query into the input.css file. Because I used rem to style all my elements, when the root em size was changed the entire application scaled proportionately. 
 
-```@layer base {
+```
+@layer base {
    ...
   :root {
         font-size:32px;
@@ -68,7 +70,8 @@ I am satisfied with how I managed to make the entire app become larger at a cert
             font-size: 40px;
         }
     }
-}```
+}
+```
 
 ### Continued development
 
