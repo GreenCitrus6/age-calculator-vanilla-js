@@ -449,7 +449,7 @@ video {
 
   font-weight: 400;
 
-  src: url(../assets/fonts/Poppins-Regular.ttf) format("woff");
+  src: url(../../assets/fonts/Poppins-Regular.ttf) format("woff");
 }
 
 @font-face {
@@ -459,7 +459,7 @@ video {
 
   font-style: italic;
 
-  src: url(../assets/fonts/Poppins-Italic.ttf) format("woff");
+  src: url(../../assets/fonts/Poppins-Italic.ttf) format("woff");
 }
 
 @font-face {
@@ -467,7 +467,7 @@ video {
 
   font-weight: 700;
 
-  src: url(../assets/fonts/Poppins-Bold.ttf) format("woff");
+  src: url(../../assets/fonts/Poppins-Bold.ttf) format("woff");
 }
 
 @font-face {
@@ -477,7 +477,7 @@ video {
 
   font-style: italic;
 
-  src: url(../assets/fonts/Poppins-BoldItalic.ttf) format("woff");
+  src: url(../../assets/fonts/Poppins-BoldItalic.ttf) format("woff");
 }
 
 @font-face {
@@ -485,7 +485,7 @@ video {
 
   font-weight:800;
 
-  src: url(../assets/fonts/Poppins-ExtraBold.ttf) format("woff");
+  src: url(../../assets/fonts/Poppins-ExtraBold.ttf) format("woff");
 }
 
 @font-face {
@@ -495,7 +495,7 @@ video {
 
   font-style: italic;
 
-  src: url(../assets/fonts/Poppins-ExtraBoldItalic.ttf) format("woff");
+  src: url(../../assets/fonts/Poppins-ExtraBoldItalic.ttf) format("woff");
 }
 
 :root {
