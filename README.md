@@ -15,8 +15,6 @@ This is a solution to the [Age calculator app challenge on Frontend Mentor](http
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
 ## Overview
 
 ### The challenge
@@ -40,7 +38,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Solution on Frontend Mentor](https://www.frontendmentor.io/solutions/age-calculator-using-html-tailwind-and-js-form-validation-b56PCqq_IS)
 - Live Site URL: [Deployed to GitHub Pages](https://greencitrus6.github.io/age-calculator-vanilla-js/)
 
 ## My process
